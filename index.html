@@ -78,7 +78,7 @@
   .hero-img-wrap { max-width: 780px; margin: 0 auto; padding: 16px 24px 0; }
   .hero-img-full {
     width: 100%; height: 260px;
-    object-fit: cover; object-position: center 20%;
+    object-fit: cover; object-position: center top;
     display: block; border-radius: 12px 12px 0 0;
   }
   .hero-text {
@@ -567,7 +567,7 @@
 <div id="toast"></div>
 
 <script>
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1fbJ3onjr5wEJsk2JA1ScocQyI3-N1bbCG_L1NQLWn3Zkzv1XjlwAX0SgWo_ArDvC/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvbAO-mCc-GLZcb2zVyxHU1U17ut0Nl2r9pQKIuL__6kcqOZnvPzxMDvvc4-VcMppF/exec';
 
 // Slots: 8:30-12:00, 13:00-17:00, mỗi 30p
 const SLOTS = [];
@@ -602,7 +602,7 @@ const SLOT_CAP = 1; // mỗi slot 1 người
 const UU_DAI = [
   { id: 'sti', name: '🦠 Tầm soát STI & bệnh lây truyền', note: 'HIV, Syphilis, STI 13 tác nhân...', old: '1,508,000đ', new: '1,357,200đ', pct: '-10%' },
   { id: 'kst', name: '🪱 Ký sinh trùng', note: 'Cysticercosis, Echinococcus...', old: '1,003,000đ', new: '902,700đ', pct: '-10%' },
-  { id: 'hpv', name: '🔬 HPV & sức khỏe phụ khoa', note: 'HPV 16, HPV 40 type, Pap smear...', old: '1,313,000đ', new: '1,181,700đ', pct: '-10%' },
+  { id: 'hpv', name: '🔬 Tầm soát nguy cơ ung thư cổ tử cung', note: 'HPV genotype Real-time PCR (40 type)', old: '750,000đ', new: '675,000đ', pct: '-10%' },
   { id: 'onco1', name: '🎗️ OnePlus Onco — Tầm soát ung thư', note: 'Tầm soát đa ung thư chuyên sâu', old: '13,200,000đ', new: '11,220,000đ', pct: '-15%' },
   { id: 'onco2', name: '🧬 OneScan Onco — Tầm soát ung thư cao cấp', note: 'Gói toàn diện cao cấp nhất', old: '17,890,000đ', new: '15,206,500đ', pct: '-15%' },
 ];

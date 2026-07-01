@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng Ký Tư Vấn Kết Quả Xét Nghiệm – ONELAB × VMED</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1B6B3A;
+    --green-mid: #2E8B57;
+    --green-light: #4CAF82;
+    --green-mint: #E8F5E9;
+    --green-pale: #F0FAF4;
+    --white: #FFFFFF;
+    --gray-50: #FAFAFA;
+    --gray-100: #F5F5F5;
+    --gray-200: #E8E8E8;
+    --gray-400: #9E9E9E;
+    --gray-600: #616161;
+    --gray-800: #212121;
+    --red: #D32F2F;
+    --orange: #E65100;
+    --amber: #F57F17;
+    --blue: #1565C0;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 2px 12px rgba(27,107,58,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(160deg, #F0FAF4 0%, #FAFAFA 50%, #E8F5E9 100%);
+    min-height: 100vh;
+    color: var(--gray-800);
+  }
+
+  /* HEADER */
+  .site-header {
+    background: var(--white);
+    border-bottom: 3px solid var(--green-dark);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 16px rgba(27,107,58,0.10);
+  }
+  .header-inner {
+    max-width: 780px; margin: 0 auto;
+    padding: 16px 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--green-dark);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark svg { width: 26px; height: 26px; fill: white; }
+  .brand-text { flex: 1; }
+  .brand-name {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 18px; font-weight: 800;
+    color: var(--green-dark);
+  }
+  .brand-sub {
+    font-size: 11px; color: var(--gray-400);
+    font-weight: 500; letter-spacing: 0.5px;
+    text-transform: uppercase; margin-top: 3px;
+  }
+  .badge {
+    background: var(--green-dark);
+    color: white; font-size: 11px; font-weight: 700;
+    padding: 5px 12px; border-radius: 20px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* HERO */
+  .hero { background: var(--gray-50); position: relative; overflow: hidden; }
+  .hero-img-wrap { max-width: 780px; margin: 0 auto; padding: 16px 24px 0; }
+  .hero-img-full {
+    width: 100%; height: 260px;
+    object-fit: cover; object-position: center 20%;
+    display: block; border-radius: 12px 12px 0 0;
+  }
+  .hero-text {
+    background: linear-gradient(135deg, #0D3D20 0%, #1B6B3A 100%);
+    border-radius: 0 0 12px 12px;
+    padding: 18px 24px 24px;
+    margin: 0 24px;
+    max-width: 732px;
+    margin-left: auto; margin-right: auto;
+    width: calc(100% - 48px);
+    color: white;
+  }
+  .hero-label {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: #A5D6A7; margin-bottom: 8px;
+  }
+  .hero-title {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 22px; font-weight: 800; line-height: 1.2; margin-bottom: 6px;
+  }
+  .hero-title span { color: #A5D6A7; }
+  .hero-desc {
+    font-size: 13px; color: rgba(255,255,255,0.78);
+    line-height: 1.55; margin-bottom: 14px; font-style: italic;
+  }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero-chip {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px; padding: 5px 12px;
+    font-size: 11px; color: white; font-weight: 500;
+  }
+  .hero-chip strong { color: #A5D6A7; }
+
+  /* MAIN */
+  .main { max-width: 780px; margin: 0 auto; padding: 32px 24px 60px; }
+
+  /* SECTION */
+  .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-num {
+    width: 32px; height: 32px; background: var(--green-dark);
+    color: white; border-radius: 50%;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 17px; font-weight: 700; color: var(--green-dark);
+  }
+  .section-sub { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--green-light), transparent);
+    margin-bottom: 24px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 28px; margin-bottom: 28px;
+    border: 1px solid rgba(27,107,58,0.07);
+  }
+
+  /* TYPE TOGGLE */
+  .type-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+  .type-btn {
+    padding: 16px 12px; border: 2px solid var(--gray-200);
+    border-radius: var(--radius-sm); background: var(--gray-50);
+    cursor: pointer; text-align: center; transition: all 0.15s;
+  }
+  .type-btn:hover { border-color: var(--green-light); background: var(--green-pale); }
+  .type-btn.active { border-color: var(--green-dark); background: var(--green-mint); }
+  .type-btn-icon { font-size: 24px; margin-bottom: 6px; }
+  .type-btn-label {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 13px; font-weight: 700; color: var(--gray-800);
+  }
+  .type-btn.active .type-btn-label { color: var(--green-dark); }
+  .type-btn-desc { font-size: 11px; color: var(--gray-400); margin-top: 3px; line-height: 1.4; }
+
+  /* FORM */
+  .form-group { margin-bottom: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+  label {
+    display: block; font-size: 13px; font-weight: 600;
+    color: var(--gray-600); margin-bottom: 7px;
+  }
+  label .req { color: var(--red); margin-left: 3px; }
+  input[type="text"], textarea, select {
+    width: 100%; padding: 11px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    font-size: 14px; font-family: 'Inter', sans-serif;
+    color: var(--gray-800); background: var(--gray-50);
+    transition: all 0.15s; outline: none;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--green-light); background: var(--white);
+    box-shadow: 0 0 0 3px rgba(76,175,130,0.12);
+  }
+  textarea { resize: vertical; min-height: 80px; }
+  .error-msg { font-size: 12px; color: var(--red); margin-top: 5px; display: none; }
+  .field-error input, .field-error textarea, .field-error select { border-color: var(--red) !important; }
+  .field-error .error-msg { display: block; }
+
+  /* SLOT */
+  .day-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .day-tab {
+    flex: 1; min-width: 80px; padding: 10px;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-sm); background: var(--gray-50);
+    cursor: pointer; text-align: center; transition: all 0.15s;
+  }
+  .day-tab:hover { border-color: var(--green-light); background: var(--green-pale); }
+  .day-tab.active { border-color: var(--green-dark); background: var(--green-mint); }
+  .day-tab-label { font-size: 10px; font-weight: 600; color: var(--gray-400); text-transform: uppercase; }
+  .day-tab.active .day-tab-label { color: var(--green-dark); }
+  .day-tab-date { font-family: 'Be Vietnam Pro', sans-serif; font-size: 20px; font-weight: 700; color: var(--gray-800); line-height: 1.1; margin-top: 2px; }
+  .day-tab.active .day-tab-date { color: var(--green-dark); }
+  .day-tab-month { font-size: 10px; color: var(--gray-400); }
+
+  .slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  @media (max-width: 480px) { .slots-grid { grid-template-columns: repeat(2, 1fr); } }
+  .slot-btn {
+    position: relative; padding: 10px 6px;
+    border: 2px solid var(--gray-200); border-radius: var(--radius-sm);
+    background: var(--white); cursor: pointer; text-align: center; transition: all 0.15s;
+  }
+  .slot-btn:not(.full):not(.selected):hover { border-color: var(--green-light); background: var(--green-pale); }
+  .slot-btn.selected { border-color: var(--green-dark); background: var(--green-mint); }
+  .slot-btn.full { background: var(--gray-100); cursor: not-allowed; opacity: 0.6; }
+  .slot-time { font-family: 'Be Vietnam Pro', sans-serif; font-size: 13px; font-weight: 700; color: var(--gray-800); }
+  .slot-btn.selected .slot-time { color: var(--green-dark); }
+  .slot-cap { font-size: 9px; color: var(--gray-400); margin-top: 3px; font-weight: 500; }
+  .slot-cap.avail { color: var(--green-mid); font-weight: 600; }
+  .slot-cap.warn { color: var(--amber); font-weight: 600; }
+  .slot-cap.full-label { color: var(--red); }
+  .slot-full-badge {
+    position: absolute; top: 3px; right: 3px;
+    background: var(--red); color: white;
+    font-size: 7px; font-weight: 700; padding: 1px 4px; border-radius: 3px;
+  }
+
+  /* SUMMARY */
+  .selection-summary {
+    background: var(--green-mint); border: 1.5px solid rgba(27,107,58,0.2);
+    border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 16px; display: none;
+  }
+  .selection-summary.visible { display: block; }
+  .summary-title { font-size: 11px; font-weight: 700; color: var(--green-dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .summary-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-600); margin-bottom: 4px; }
+  .summary-row strong { color: var(--green-dark); }
+
+  /* UU DAI */
+  .uu-dai-grid { display: grid; gap: 10px; }
+  .uu-dai-card {
+    border: 1.5px solid rgba(27,107,58,0.15);
+    border-radius: var(--radius-sm); padding: 14px;
+    background: var(--green-pale); cursor: pointer; transition: all 0.15s;
+  }
+  .uu-dai-card:hover { border-color: var(--green-light); }
+  .uu-dai-card.selected { border-color: var(--green-dark); background: var(--green-mint); }
+  .uu-dai-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .uu-dai-check {
+    width: 18px; height: 18px; border: 2px solid var(--gray-200);
+    border-radius: 4px; flex-shrink: 0; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .uu-dai-card.selected .uu-dai-check { background: var(--green-dark); border-color: var(--green-dark); }
+  .uu-dai-card.selected .uu-dai-check::after { content: '✓'; color: white; font-size: 11px; font-weight: 700; }
+  .uu-dai-name { font-family: 'Be Vietnam Pro', sans-serif; font-size: 13px; font-weight: 700; color: var(--green-dark); }
+  .uu-dai-note { font-size: 11px; color: var(--gray-400); margin-bottom: 6px; }
+  .uu-dai-price { display: flex; align-items: center; gap: 8px; }
+  .uu-dai-old { font-size: 11px; color: var(--gray-400); text-decoration: line-through; }
+  .uu-dai-new { font-size: 13px; font-weight: 700; color: var(--green-dark); }
+  .uu-dai-badge { background: #E53935; color: white; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 8px; }
+
+  /* NOTICE */
+  .notice {
+    background: #E3F2FD; border: 1px solid #90CAF9;
+    border-radius: var(--radius-sm); padding: 12px 16px;
+    font-size: 12.5px; color: #0D47A1; line-height: 1.6;
+    margin-bottom: 20px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .notice-icon { font-size: 16px; flex-shrink: 0; }
+  .notice-green {
+    background: #FFF8E1; border: 1px solid #FFE082;
+    border-radius: var(--radius-sm); padding: 12px 16px;
+    font-size: 12.5px; color: #5D4037; line-height: 1.6;
+    margin-bottom: 20px; display: flex; gap: 10px; align-items: flex-start;
+  }
+
+  /* SUBMIT */
+  .consent-block {
+    background: var(--green-pale); border-left: 3px solid var(--green-light);
+    padding: 14px 16px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 20px; font-size: 13px; color: var(--gray-600); line-height: 1.6;
+  }
+  .consent-check { display: flex; gap: 10px; align-items: flex-start; }
+  .consent-check input[type="checkbox"] { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; accent-color: var(--green-dark); }
+  .consent-check label { font-size: 13px; color: var(--gray-600); cursor: pointer; }
+  .btn-submit {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+    color: white; border: none; border-radius: var(--radius);
+    font-family: 'Be Vietnam Pro', sans-serif; font-size: 16px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(27,107,58,0.30); }
+  .btn-submit:disabled { background: var(--gray-200); color: var(--gray-400); cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn-loading { display: none; align-items: center; justify-content: center; gap: 8px; }
+  .spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* SUCCESS */
+  #success-screen { display: none; text-align: center; padding: 48px 24px; }
+  .success-icon {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--green-dark), var(--green-light));
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px; box-shadow: 0 8px 24px rgba(27,107,58,0.25);
+  }
+  .success-icon svg { width: 36px; height: 36px; fill: white; }
+  .success-title { font-family: 'Be Vietnam Pro', sans-serif; font-size: 22px; font-weight: 800; color: var(--green-dark); margin-bottom: 10px; }
+  .success-desc { font-size: 14px; color: var(--gray-600); line-height: 1.6; max-width: 400px; margin: 0 auto 24px; }
+  .success-card {
+    background: var(--green-mint); border: 1.5px solid rgba(27,107,58,0.15);
+    border-radius: var(--radius); padding: 20px 24px; max-width: 420px;
+    margin: 0 auto 20px; text-align: left;
+  }
+  .success-card-title { font-size: 11px; font-weight: 700; color: var(--green-dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .success-detail { display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-600); margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(27,107,58,0.1); }
+  .success-detail:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .success-detail strong { color: var(--green-dark); }
+  .success-note {
+    background: #E3F2FD; border: 1px solid #90CAF9;
+    border-radius: var(--radius-sm); padding: 14px 16px;
+    font-size: 13px; color: #0D47A1; line-height: 1.6;
+    max-width: 420px; margin: 0 auto;
+  }
+
+  /* FOOTER */
+  .form-footer { background: var(--green-dark); color: rgba(255,255,255,0.7); text-align: center; padding: 20px 24px; font-size: 12px; line-height: 1.6; }
+  .form-footer strong { color: white; }
+
+  /* TOAST */
+  #toast {
+    position: fixed; bottom: 24px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--gray-800); color: white; padding: 12px 20px;
+    border-radius: 8px; font-size: 13px; font-weight: 500; z-index: 9999;
+    transition: transform 0.3s ease; white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+  #toast.error { background: var(--red); }
+
+  .slot-section-title {
+    font-size: 13px; font-weight: 600; color: var(--gray-600);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .slot-section-title::before { content: ''; width: 3px; height: 14px; background: var(--green-dark); border-radius: 2px; display: inline-block; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    </div>
+    <div class="brand-text">
+      <div class="brand-name">ONELAB</div>
+      <div class="brand-sub">Hệ thống xét nghiệm & chẩn đoán y khoa</div>
+    </div>
+    <div class="badge">Tư Vấn</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-img-wrap">
+    <img class="hero-img-full" src="tuvan-banner.png" alt="ONELAB Tư vấn trực tuyến">
+  </div>
+  <div class="hero-text">
+    <div class="hero-label">✦ Dịch vụ tư vấn sức khỏe chuyên sâu</div>
+    <div class="hero-title">Đăng ký Tư Vấn<br><span>Kết Quả Xét Nghiệm 2025</span></div>
+    <div class="hero-desc">Kết nối trực tiếp với Bác sĩ ONELAB — giải đáp kết quả xét nghiệm 2025 và chuẩn bị tốt nhất cho hành trình khám sức khỏe 2026 của đại gia đình VMED.</div>
+    <div class="hero-chips">
+      <div class="hero-chip">🩺 Tư vấn BS trực tuyến</div>
+      <div class="hero-chip">📅 <strong>02–04 & 06/07/2026</strong></div>
+      <div class="hero-chip">⏰ 8:30 – 17:00</div>
+      <div class="hero-chip">🎁 Ưu đãi xét nghiệm VMED</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <form id="reg-form">
+
+    <!-- SECTION 1: LOẠI TƯ VẤN -->
+    <div class="section-label">
+      <div class="section-num">1</div>
+      <div>
+        <div class="section-title">Chọn loại tư vấn</div>
+        <div class="section-sub">Bác sĩ hoặc chuyên viên CSKH sẽ liên hệ theo lịch đã chọn</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="card">
+      <div class="type-toggle">
+        <div class="type-btn active" id="btn-type-bs" onclick="selectType('bs')">
+          <div class="type-btn-icon">🩺</div>
+          <div class="type-btn-label">Tư vấn Bác sĩ</div>
+          <div class="type-btn-desc">Giải đáp KQ xét nghiệm 2025 & chuẩn bị khám 2026</div>
+        </div>
+        <div class="type-btn" id="btn-type-goi" onclick="selectType('goi')">
+          <div class="type-btn-icon">🎁</div>
+          <div class="type-btn-label">Tư vấn Gói ưu đãi</div>
+          <div class="type-btn-desc">CSKH tư vấn các gói xét nghiệm ưu đãi dành riêng cho VMED</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: THÔNG TIN -->
+    <div class="section-label">
+      <div class="section-num">2</div>
+      <div>
+        <div class="section-title">Thông tin liên hệ</div>
+        <div class="section-sub">Điền chính xác để ONELAB liên hệ đúng lịch</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="card">
+      <div class="form-row">
+        <div class="form-group" id="fg-name">
+          <label>Họ và tên <span class="req">*</span></label>
+          <input type="text" id="f-name" placeholder="Nguyễn Văn A">
+          <div class="error-msg">Vui lòng nhập họ tên</div>
+        </div>
+        <div class="form-group" id="fg-phone">
+          <label>Số điện thoại <span class="req">*</span></label>
+          <input type="text" id="f-phone" placeholder="09xxxxxxxx" maxlength="11">
+          <div class="error-msg">Vui lòng nhập số điện thoại hợp lệ</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group" id="fg-dob">
+          <label>Ngày sinh <span class="req">*</span></label>
+          <input type="text" id="f-dob" placeholder="DD/MM/YYYY" maxlength="10" oninput="formatDOB(this)">
+          <div class="error-msg">Vui lòng nhập đúng định dạng DD/MM/YYYY</div>
+        </div>
+        <div class="form-group" id="fg-cccd">
+          <label>Số CCCD <span class="req">*</span></label>
+          <input type="text" id="f-cccd" placeholder="0xxxxxxxxx" maxlength="12">
+          <div class="error-msg">Vui lòng nhập số CCCD hợp lệ</div>
+        </div>
+      </div>
+      <div class="form-group" id="fg-company">
+        <label>Đơn vị / Phòng ban <span class="req">*</span></label>
+        <input type="text" id="f-company" placeholder="Tên công ty / phòng ban">
+        <div class="error-msg">Vui lòng nhập đơn vị</div>
+      </div>
+
+      <!-- Chỉ hiện khi chọn tư vấn BS -->
+      <div id="bs-extra">
+        <div class="form-group">
+          <label>Chỉ số quan tâm / Câu hỏi muốn hỏi BS <span style="font-weight:400;color:var(--gray-400)">(nếu có)</span></label>
+          <textarea id="f-question" placeholder="Ví dụ: Chỉ số mỡ máu tăng, đường huyết, men gan... hoặc câu hỏi cụ thể bạn muốn hỏi bác sĩ"></textarea>
+        </div>
+      </div>
+
+      <!-- Chỉ hiện khi chọn tư vấn gói -->
+      <div id="goi-extra" style="display:none;">
+        <div class="form-group">
+          <label>Gói xét nghiệm quan tâm <span style="font-weight:400;color:var(--gray-400)">(có thể chọn nhiều)</span></label>
+          <div class="uu-dai-grid" id="goi-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: CHỌN LỊCH -->
+    <div class="section-label">
+      <div class="section-num">3</div>
+      <div>
+        <div class="section-title" id="section3-title">Chọn lịch tư vấn Bác sĩ</div>
+        <div class="section-sub">Mỗi slot 30 phút — CSKH sẽ liên hệ đúng khung giờ đã chọn</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="card">
+      <div class="notice">
+        <span class="notice-icon">ℹ️</span>
+        <span>Sau khi đăng ký, <strong>ONELAB sẽ liên hệ xác nhận qua số điện thoại</strong> của bạn trong vòng 2 giờ làm việc. Vui lòng giữ máy trong khung giờ đã chọn.</span>
+      </div>
+
+      <div class="slot-section-title">Chọn ngày</div>
+      <div class="day-tabs">
+        <div class="day-tab active" id="tab-02" onclick="switchDay('02')">
+          <div class="day-tab-label">Thứ Năm</div>
+          <div class="day-tab-date">02</div>
+          <div class="day-tab-month">Tháng 07</div>
+        </div>
+        <div class="day-tab" id="tab-03" onclick="switchDay('03')">
+          <div class="day-tab-label">Thứ Sáu</div>
+          <div class="day-tab-date">03</div>
+          <div class="day-tab-month">Tháng 07</div>
+        </div>
+        <div class="day-tab" id="tab-04" onclick="switchDay('04')">
+          <div class="day-tab-label">Thứ Bảy</div>
+          <div class="day-tab-date">04</div>
+          <div class="day-tab-month">Tháng 07</div>
+        </div>
+        <div class="day-tab" id="tab-06" onclick="switchDay('06')">
+          <div class="day-tab-label">Thứ Hai</div>
+          <div class="day-tab-date">06</div>
+          <div class="day-tab-month">Tháng 07</div>
+        </div>
+      </div>
+
+      <div class="slot-section-title">Chọn khung giờ</div>
+      <div class="slots-grid" id="slots-grid"></div>
+
+      <div class="selection-summary visible" id="slot-summary" style="display:none!important;">
+        <div class="summary-title">✓ Lịch đã chọn</div>
+        <div class="summary-row"><span>Ngày</span><strong id="sum-day">—</strong></div>
+        <div class="summary-row"><span>Khung giờ</span><strong id="sum-slot">—</strong></div>
+        <div class="summary-row"><span>Loại tư vấn</span><strong id="sum-type">—</strong></div>
+      </div>
+    </div>
+
+    <!-- CONSENT + SUBMIT -->
+    <div class="card">
+      <div class="consent-block">
+        Bằng cách đăng ký, tôi đồng ý để ONELAB liên hệ tư vấn sức khỏe theo thông tin đã cung cấp. Thông tin được bảo mật và chỉ dùng cho mục đích chăm sóc sức khỏe.
+      </div>
+      <div class="consent-check" style="margin-bottom:20px;">
+        <input type="checkbox" id="consent" onchange="updateSubmitBtn()">
+        <label for="consent">Tôi đã đọc và đồng ý</label>
+      </div>
+      <button type="button" class="btn-submit" id="btn-submit" onclick="handleSubmit()" disabled>
+        <span id="btn-text">Xác nhận đăng ký tư vấn</span>
+        <span class="btn-loading" id="btn-loading"><span class="spinner"></span> Đang gửi...</span>
+      </button>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div id="success-screen">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+    </div>
+    <div class="success-title">Đăng ký thành công!</div>
+    <div class="success-desc">ONELAB đã nhận được yêu cầu của bạn. Chuyên viên sẽ liên hệ xác nhận qua số điện thoại trong vòng <strong>2 giờ làm việc</strong>.</div>
+    <div class="success-card">
+      <div class="success-card-title">📋 Thông tin đăng ký</div>
+      <div class="success-detail"><span>Họ tên</span><strong id="sc-name">—</strong></div>
+      <div class="success-detail"><span>SĐT</span><strong id="sc-phone">—</strong></div>
+      <div class="success-detail"><span>Đơn vị</span><strong id="sc-company">—</strong></div>
+      <div class="success-detail"><span>Loại tư vấn</span><strong id="sc-type">—</strong></div>
+      <div class="success-detail"><span>Lịch dự kiến</span><strong id="sc-slot">—</strong></div>
+    </div>
+    <div class="success-note" style="margin-top:16px;">
+      📞 Nếu cần hỗ trợ gấp, liên hệ trực tiếp:<br>
+      <strong>Hotline: 1900 25 55 99</strong> | <strong>info@onelab.vn</strong>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="form-footer">
+  <strong>ONELAB – Hệ thống Xét nghiệm & Chẩn đoán Y khoa</strong><br>
+  Hotline: <strong>1900 25 55 99</strong> &nbsp;|&nbsp; Email: <strong>info@onelab.vn</strong> &nbsp;|&nbsp; <strong>onelab.vn</strong><br>
+  Dịch vụ dành riêng cho <strong>Đại gia đình VMED Group</strong>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1fbJ3onjr5wEJsk2JA1ScocQyI3-N1bbCG_L1NQLWn3Zkzv1XjlwAX0SgWo_ArDvC/exec';
+
+// Slots: 8:30-12:00, 13:00-17:00, mỗi 30p
+const SLOTS = [];
+function buildSlots() {
+  const times = [];
+  // Sáng: 8:30 → 11:30
+  for (let h = 8; h <= 11; h++) {
+    for (let m of [0, 30]) {
+      if (h === 8 && m === 0) continue; // bắt đầu từ 8:30
+      times.push({ h, m });
+    }
+  }
+  // Chiều: 13:00 → 16:30
+  for (let h = 13; h <= 16; h++) {
+    for (let m of [0, 30]) {
+      times.push({ h, m });
+    }
+  }
+  times.forEach((t, i) => {
+    const h1 = String(t.h).padStart(2,'0');
+    const m1 = String(t.m).padStart(2,'0');
+    const next = t.m === 30 ? { h: t.h+1, m: 0 } : { h: t.h, m: 30 };
+    const h2 = String(next.h).padStart(2,'0');
+    const m2 = String(next.m).padStart(2,'0');
+    SLOTS.push({ id: 's'+i, time: `${h1}:${m1} – ${h2}:${m2}` });
+  });
+}
+buildSlots();
+
+const SLOT_CAP = 1; // mỗi slot 1 người
+
+const UU_DAI = [
+  { id: 'sti', name: '🦠 Tầm soát STI & bệnh lây truyền', note: 'HIV, Syphilis, STI 13 tác nhân...', old: '1,508,000đ', new: '1,357,200đ', pct: '-10%' },
+  { id: 'kst', name: '🪱 Ký sinh trùng', note: 'Cysticercosis, Echinococcus...', old: '1,003,000đ', new: '902,700đ', pct: '-10%' },
+  { id: 'hpv', name: '🔬 HPV & sức khỏe phụ khoa', note: 'HPV 16, HPV 40 type, Pap smear...', old: '1,313,000đ', new: '1,181,700đ', pct: '-10%' },
+  { id: 'onco1', name: '🎗️ OnePlus Onco — Tầm soát ung thư', note: 'Tầm soát đa ung thư chuyên sâu', old: '13,200,000đ', new: '11,220,000đ', pct: '-15%' },
+  { id: 'onco2', name: '🧬 OneScan Onco — Tầm soát ung thư cao cấp', note: 'Gói toàn diện cao cấp nhất', old: '17,890,000đ', new: '15,206,500đ', pct: '-15%' },
+];
+
+let state = {
+  type: 'bs',
+  currentDay: '02',
+  selectedSlotId: null,
+  selectedSlotDay: null,
+  selectedGoi: [],
+  slotCounts: { '02':{}, '03':{}, '04':{}, '06':{} },
+  totalRegistered: 0,
+};
+
+const DAYS_VN = { '02':'Thứ Năm', '03':'Thứ Sáu', '04':'Thứ Bảy', '06':'Thứ Hai' };
+
+async function init() {
+  renderGoiGrid();
+  renderSlots();
+}
+
+// TYPE
+function selectType(type) {
+  state.type = type;
+  document.getElementById('btn-type-bs').classList.toggle('active', type === 'bs');
+  document.getElementById('btn-type-goi').classList.toggle('active', type === 'goi');
+  document.getElementById('bs-extra').style.display = type === 'bs' ? '' : 'none';
+  document.getElementById('goi-extra').style.display = type === 'goi' ? '' : 'none';
+  document.getElementById('section3-title').textContent = type === 'bs' ? 'Chọn lịch tư vấn Bác sĩ' : 'Chọn lịch gọi tư vấn gói';
+  updateSummary();
+  updateSubmitBtn();
+}
+
+// GOI
+function renderGoiGrid() {
+  document.getElementById('goi-grid').innerHTML = UU_DAI.map(g => `
+    <div class="uu-dai-card${state.selectedGoi.includes(g.id)?' selected':''}" onclick="toggleGoi('${g.id}')">
+      <div class="uu-dai-card-header">
+        <div class="uu-dai-check"></div>
+        <div class="uu-dai-name">${g.name}</div>
+      </div>
+      <div class="uu-dai-note">${g.note}</div>
+      <div class="uu-dai-price">
+        <span class="uu-dai-old">${g.old}</span>
+        <span class="uu-dai-new">${g.new}</span>
+        <span class="uu-dai-badge">${g.pct}</span>
+      </div>
+    </div>`).join('');
+}
+function toggleGoi(id) {
+  const idx = state.selectedGoi.indexOf(id);
+  if (idx === -1) state.selectedGoi.push(id);
+  else state.selectedGoi.splice(idx, 1);
+  renderGoiGrid();
+  updateSubmitBtn();
+}
+
+// SLOTS
+function switchDay(day) {
+  state.currentDay = day;
+  ['02','03','04','06'].forEach(d => {
+    document.getElementById('tab-'+d).classList.toggle('active', d === day);
+  });
+  renderSlots();
+}
+
+function renderSlots() {
+  const counts = state.slotCounts[state.currentDay] || {};
+  document.getElementById('slots-grid').innerHTML = SLOTS.map(slot => {
+    const filled = counts[slot.id] || 0;
+    const remaining = SLOT_CAP - filled;
+    const isFull = remaining <= 0;
+    const isSelected = state.selectedSlotId === slot.id && state.selectedSlotDay === state.currentDay;
+    const capLabel = isFull ? 'Đã đặt' : 'Còn chỗ';
+    const capClass = isFull ? 'full-label' : 'avail';
+    return `<div class="slot-btn${isFull?' full':''}${isSelected?' selected':''}" onclick="${isFull?'':` selectSlot('${slot.id}')`}">
+      ${isFull ? '<div class="slot-full-badge">ĐẶT</div>' : ''}
+      <div class="slot-time">${slot.time}</div>
+      <div class="slot-cap ${capClass}">${capLabel}</div>
+    </div>`;
+  }).join('');
+}
+
+function selectSlot(slotId) {
+  state.selectedSlotId = slotId;
+  state.selectedSlotDay = state.currentDay;
+  renderSlots();
+  updateSummary();
+  updateSubmitBtn();
+}
+
+function updateSummary() {
+  const el = document.getElementById('slot-summary');
+  if (!state.selectedSlotId) { el.style.display = 'none'; return; }
+  const slot = SLOTS.find(s => s.id === state.selectedSlotId);
+  document.getElementById('sum-day').textContent = `${DAYS_VN[state.selectedSlotDay]}, ${state.selectedSlotDay}/07/2026`;
+  document.getElementById('sum-slot').textContent = slot.time;
+  document.getElementById('sum-type').textContent = state.type === 'bs' ? 'Tư vấn Bác sĩ' : 'Tư vấn Gói ưu đãi';
+  el.style.display = 'block';
+}
+
+function updateSubmitBtn() {
+  const ok = document.getElementById('consent').checked && state.selectedSlotId;
+  document.getElementById('btn-submit').disabled = !ok;
+}
+
+function validate() {
+  let ok = true;
+  const fields = [
+    { id: 'f-name', fg: 'fg-name', check: v => v.trim().length >= 2 },
+    { id: 'f-phone', fg: 'fg-phone', check: v => /^[0-9]{9,11}$/.test(v.trim()) },
+    { id: 'f-dob', fg: 'fg-dob', check: v => /^\d{2}\/\d{2}\/\d{4}$/.test(v.trim()) },
+    { id: 'f-cccd', fg: 'fg-cccd', check: v => /^[0-9]{9,12}$/.test(v.trim()) },
+    { id: 'f-company', fg: 'fg-company', check: v => v.trim().length >= 2 },
+  ];
+  fields.forEach(f => {
+    const val = document.getElementById(f.id).value;
+    const fg = document.getElementById(f.fg);
+    if (!f.check(val)) { fg.classList.add('field-error'); ok = false; }
+    else fg.classList.remove('field-error');
+  });
+  return ok;
+}
+
+async function handleSubmit() {
+  if (!validate()) { showToast('Vui lòng kiểm tra lại thông tin', true); return; }
+  const slot = SLOTS.find(s => s.id === state.selectedSlotId);
+  const payload = {
+    city: 'TUVAN',
+    name: document.getElementById('f-name').value.trim(),
+    phone: document.getElementById('f-phone').value.trim(),
+    dob: document.getElementById('f-dob').value,
+    cccd: document.getElementById('f-cccd').value.trim(),
+    company: document.getElementById('f-company').value.trim(),
+    type: state.type === 'bs' ? 'Tư vấn Bác sĩ' : 'Tư vấn Gói ưu đãi',
+    question: document.getElementById('f-question') ? document.getElementById('f-question').value.trim() : '',
+    goiSelected: state.selectedGoi.join(', '),
+    consultDay: `${state.selectedSlotDay}/07/2026`,
+    consultSlot: slot.time,
+    timestamp: new Date().toISOString(),
+  };
+
+  document.getElementById('btn-text').style.display = 'none';
+  document.getElementById('btn-loading').style.display = 'flex';
+  document.getElementById('btn-submit').disabled = true;
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
+    showSuccess(payload);
+  } catch(e) {
+    showToast('Không thể kết nối — thử lại sau', true);
+  }
+  document.getElementById('btn-text').style.display = '';
+  document.getElementById('btn-loading').style.display = 'none';
+}
+
+function showSuccess(p) {
+  document.getElementById('reg-form').style.display = 'none';
+  document.getElementById('success-screen').style.display = 'block';
+  document.getElementById('sc-name').textContent = p.name;
+  document.getElementById('sc-phone').textContent = p.phone;
+  document.getElementById('sc-company').textContent = p.company;
+  document.getElementById('sc-type').textContent = p.type;
+  document.getElementById('sc-slot').textContent = `${p.consultDay} — ${p.consultSlot}`;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showToast(msg, isError) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = isError ? 'error' : '';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+function formatDOB(input) {
+  var v = input.value.replace(/\D/g, '');
+  if (v.length >= 3 && v.length <= 4) v = v.slice(0,2) + '/' + v.slice(2);
+  else if (v.length >= 5) v = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4,8);
+  input.value = v;
+}
+
+init();
+</script>
+</body>
+</html>

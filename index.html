@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng Ký Tư Vấn Kết Quả Xét Nghiệm – ONELAB × VMED</title>
+<title>Đăng Ký Tư Vấn Trước Khám – ONELAB × VMED</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -370,11 +370,11 @@
   <div class="hero-text">
     <div class="hero-label">✦ Dịch vụ tư vấn sức khỏe chuyên sâu</div>
     <div class="hero-title">Đăng ký Tư Vấn<br><span>Kết Quả Xét Nghiệm 2025</span></div>
-    <div class="hero-desc">Kết nối trực tiếp với Bác sĩ ONELAB — giải đáp kết quả xét nghiệm 2025 và chuẩn bị tốt nhất cho hành trình khám sức khỏe 2026 của đại gia đình VMED.</div>
+    <div class="hero-desc">Kết nối trực tiếp với Bác sĩ & chuyên viên ONELAB — tư vấn kết quả xét nghiệm 2025 (nếu có), các xét nghiệm phát sinh và chuẩn bị tốt nhất trước khám tổng quát 2026.</div>
     <div class="hero-chips">
       <div class="hero-chip">🩺 Tư vấn BS trực tuyến</div>
       <div class="hero-chip">📅 <strong>02–04 & 06/07/2026</strong></div>
-      <div class="hero-chip">⏰ 8:30 – 17:00</div>
+      <div class="hero-chip">⏰ 8:30 – 16:30</div>
       <div class="hero-chip">🎁 Ưu đãi xét nghiệm VMED</div>
     </div>
   </div>
@@ -454,7 +454,7 @@
       <div id="bs-extra">
         <div class="form-group">
           <label>Chỉ số quan tâm / Câu hỏi muốn hỏi BS <span style="font-weight:400;color:var(--gray-400)">(nếu có)</span></label>
-          <textarea id="f-question" placeholder="Ví dụ: Chỉ số mỡ máu tăng, đường huyết, men gan... hoặc câu hỏi cụ thể bạn muốn hỏi bác sĩ"></textarea>
+          <textarea id="f-question" placeholder="Ví dụ: Chỉ số mỡ máu tăng, đường huyết, men gan... hoặc xét nghiệm phát sinh bạn muốn tư vấn thêm"></textarea>
         </div>
       </div>
 
@@ -485,12 +485,7 @@
 
       <div class="slot-section-title">Chọn ngày</div>
       <div class="day-tabs">
-        <div class="day-tab active" id="tab-02" onclick="switchDay('02')">
-          <div class="day-tab-label">Thứ Năm</div>
-          <div class="day-tab-date">02</div>
-          <div class="day-tab-month">Tháng 07</div>
-        </div>
-        <div class="day-tab" id="tab-03" onclick="switchDay('03')">
+        <div class="day-tab active" id="tab-03" onclick="switchDay('03')">
           <div class="day-tab-label">Thứ Sáu</div>
           <div class="day-tab-date">03</div>
           <div class="day-tab-month">Tháng 07</div>
@@ -573,16 +568,10 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvbAO-mCc-GL
 const SLOTS = [];
 function buildSlots() {
   const times = [];
-  // Sáng: 8:30 → 11:30
-  for (let h = 8; h <= 11; h++) {
+  for (let h = 8; h <= 16; h++) {
     for (let m of [0, 30]) {
       if (h === 8 && m === 0) continue; // bắt đầu từ 8:30
-      times.push({ h, m });
-    }
-  }
-  // Chiều: 13:00 → 16:30
-  for (let h = 13; h <= 16; h++) {
-    for (let m of [0, 30]) {
+      if (h === 16 && m === 30) break;  // kết thúc 16:30
       times.push({ h, m });
     }
   }
@@ -592,7 +581,7 @@ function buildSlots() {
     const next = t.m === 30 ? { h: t.h+1, m: 0 } : { h: t.h, m: 30 };
     const h2 = String(next.h).padStart(2,'0');
     const m2 = String(next.m).padStart(2,'0');
-    SLOTS.push({ id: 's'+i, time: `${h1}:${m1} – ${h2}:${m2}` });
+    SLOTS.push({ id: 's'+i, time: `${h1}:${m1} – ${h2}:${m2}`, cap: 2 });
   });
 }
 buildSlots();
@@ -609,15 +598,15 @@ const UU_DAI = [
 
 let state = {
   type: 'bs',
-  currentDay: '02',
+  currentDay: '03',
   selectedSlotId: null,
   selectedSlotDay: null,
   selectedGoi: [],
-  slotCounts: { '02':{}, '03':{}, '04':{}, '06':{} },
+  slotCounts: { '03':{}, '04':{}, '06':{} },
   totalRegistered: 0,
 };
 
-const DAYS_VN = { '02':'Thứ Năm', '03':'Thứ Sáu', '04':'Thứ Bảy', '06':'Thứ Hai' };
+const DAYS_VN = { '03':'Thứ Sáu', '04':'Thứ Bảy', '06':'Thứ Hai' };
 
 async function init() {
   renderGoiGrid();
@@ -663,7 +652,7 @@ function toggleGoi(id) {
 // SLOTS
 function switchDay(day) {
   state.currentDay = day;
-  ['02','03','04','06'].forEach(d => {
+  ['03','04','06'].forEach(d => {
     document.getElementById('tab-'+d).classList.toggle('active', d === day);
   });
   renderSlots();

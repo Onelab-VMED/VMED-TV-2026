@@ -571,7 +571,9 @@ function buildSlots() {
   for (let h = 8; h <= 16; h++) {
     for (let m of [0, 30]) {
       if (h === 8 && m === 0) continue; // bắt đầu từ 8:30
-      if (h === 16 && m === 30) break;  // kết thúc 16:30
+      if (h === 12 || h === 13) continue; // nghỉ trưa 12:00-13:00 (bỏ cả 13:00 vì slot 13:00-13:30 bắt đầu từ 13:00)
+      if (h === 13 && m === 0) continue;
+      if (h === 16 && m === 30) break;
       times.push({ h, m });
     }
   }

@@ -562,7 +562,7 @@
 <div id="toast"></div>
 
 <script>
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxWr-wj_Wfwm8rdCXJ-bXCdpIE2YZwzm1whW9m5N6sgy48FkXIbP5Tt1DrCRgV0otY/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfrnrb3SOMKLJHJvE4aGMCEzrmHBO2zOIrigJUs-B_dTBC15Eed9zQPu9VDW3Rskbi/exec';
 
 // Slots: 8:30-12:00, 13:00-17:00, mỗi 30p
 const SLOTS = [];
@@ -763,7 +763,9 @@ function validate() {
 
 async function handleSubmit() {
   if (!validate()) { showToast('Vui lòng kiểm tra lại thông tin', true); return; }
+  if (!state.selectedSlotId || !state.selectedSlotDay) { showToast('Vui lòng chọn ngày và khung giờ', true); return; }
   const slot = SLOTS.find(s => s.id === state.selectedSlotId);
+  if (!slot) { showToast('Vui lòng chọn khung giờ hợp lệ', true); return; }
   const payload = {
     city: 'TUVAN',
     name: document.getElementById('f-name').value.trim(),
@@ -774,7 +776,7 @@ async function handleSubmit() {
     type: state.type === 'bs' ? 'Tư vấn Bác sĩ' : 'Tư vấn Gói ưu đãi',
     question: document.getElementById('f-question') ? document.getElementById('f-question').value.trim() : '',
     goiSelected: state.selectedGoi.join(', '),
-    consultDay: `${state.selectedSlotDay}/07/2026`,
+    consultDay: state.selectedSlotDay + '/07/2026',
     consultSlot: slot.time,
     timestamp: new Date().toISOString(),
   };

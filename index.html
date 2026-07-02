@@ -562,7 +562,7 @@
 <div id="toast"></div>
 
 <script>
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvbAO-mCc-GLZcb2zVyxHU1U17ut0Nl2r9pQKIuL__6kcqOZnvPzxMDvvc4-VcMppF/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxWr-wj_Wfwm8rdCXJ-bXCdpIE2YZwzm1whW9m5N6sgy48FkXIbP5Tt1DrCRgV0otY/exec';
 
 // Slots: 8:30-12:00, 13:00-17:00, mỗi 30p
 const SLOTS = [];
@@ -608,8 +608,53 @@ let state = {
 
 const DAYS_VN = { '03':'Thứ Sáu', '04':'Thứ Bảy', '06':'Thứ Hai' };
 
+async function fetchCounts() {
+  try {
+    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSW8FI97YWGQExCHNGZbOino88yTLX3_fTvOO-Cz8Caopb1Q_xcJ06eU2jZuApgjfwcpx0n2aTEdO6Z/pub?gid=0&single=true&output=csv&t=' + Date.now();
+    const r = await fetch(url);
+    const text = await r.text();
+    const lines = text.trim().split('\n').slice(1);
+
+    const dayCounts = { '03':{}, '04':{}, '06':{} };
+
+    lines.forEach(line => {
+      if (!line.trim()) return;
+      const cols = [];
+      let cur = '', inQ = false;
+      for (let i = 0; i < line.length; i++) {
+        if (line[i] === '"') { inQ = !inQ; }
+        else if (line[i] === ',' && !inQ) { cols.push(cur.trim()); cur = ''; }
+        else { cur += line[i]; }
+      }
+      cols.push(cur.trim());
+
+      const rawDay = (cols[9] || '').trim();
+      const consultSlot = (cols[10] || '').trim();
+      const dayNum = rawDay.split('/')[0].padStart(2, '0');
+      const startTime = consultSlot.substring(0, 5).trim();
+
+      if (dayNum && startTime && dayCounts[dayNum] !== undefined) {
+        dayCounts[dayNum][startTime] = (dayCounts[dayNum][startTime] || 0) + 1;
+      }
+    });
+
+    // Map startTime to slot id
+    SLOTS.forEach(slot => {
+      const start = slot.time.substring(0, 5);
+      ['03','04','06'].forEach(day => {
+        if (!state.slotCounts[day]) state.slotCounts[day] = {};
+        state.slotCounts[day][slot.id] = dayCounts[day][start] || 0;
+      });
+    });
+  } catch(e) {
+    console.log('fetchCounts error:', e);
+  }
+}
+
 async function init() {
+  buildSlots();
   renderGoiGrid();
+  await fetchCounts();
   renderSlots();
 }
 

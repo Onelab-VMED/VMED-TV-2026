@@ -708,10 +708,16 @@ function renderSlots() {
   const counts = state.slotCounts[state.currentDay] || {};
   document.getElementById('slots-grid').innerHTML = SLOTS.map(slot => {
     const filled = counts[slot.id] || 0;
-    const remaining = SLOT_CAP - filled;
-    const isFull = remaining <= 0;
+    const remaining = slot.cap - filled;
+    // Auto-lock past slots
+    const now = new Date(new Date().getTime() + 7*60*60*1000);
+    const slotH = parseInt(slot.time.split(':')[0]);
+    const slotM = parseInt(slot.time.split(':')[1]);
+    const slotDate = new Date(Date.UTC(2026, 6, parseInt(state.currentDay), slotH - 7, slotM));
+    const isPast = now > slotDate;
+    const isFull = remaining <= 0 || isPast;
     const isSelected = state.selectedSlotId === slot.id && state.selectedSlotDay === state.currentDay;
-    const capLabel = isFull ? 'Đã đặt' : 'Còn chỗ';
+    const capLabel = isPast ? 'Đã qua' : (remaining <= 0 ? 'Đã đặt' : `Còn ${remaining} chỗ`);
     const capClass = isFull ? 'full-label' : 'avail';
     return `<div class="slot-btn${isFull?' full':''}${isSelected?' selected':''}" onclick="${isFull?'':` selectSlot('${slot.id}')`}">
       ${isFull ? '<div class="slot-full-badge">ĐẶT</div>' : ''}

@@ -629,8 +629,8 @@ async function fetchCounts() {
       }
       cols.push(cur.trim());
 
-      const rawDay = (cols[9] || '').trim();
-      const consultSlot = (cols[10] || '').trim();
+      const rawDay = (cols[8] || '').trim();  // cot I - Ngay tu van
+      const consultSlot = (cols[9] || '').trim();  // cot J - Khung gio
       const dayNum = rawDay.split('/')[0].padStart(2, '0');
       const startTime = consultSlot.substring(0, 5).trim();
 

@@ -709,12 +709,18 @@ function renderSlots() {
   document.getElementById('slots-grid').innerHTML = SLOTS.map(slot => {
     const filled = counts[slot.id] || 0;
     const remaining = slot.cap - filled;
-    // Auto-lock past slots
-    const now = new Date(new Date().getTime() + 7*60*60*1000);
-    const slotH = parseInt(slot.time.split(':')[0]);
-    const slotM = parseInt(slot.time.split(':')[1]);
-    const slotDate = new Date(Date.UTC(2026, 6, parseInt(state.currentDay), slotH - 7, slotM));
-    const isPast = now > slotDate;
+    // Auto-lock past slots (VN time = UTC+7)
+    const _now = new Date();
+    const _vnH = (_now.getUTCHours() + 7) % 24;
+    const _vnDay = _now.getUTCDate() + (_now.getUTCHours() + 7 >= 24 ? 1 : 0);
+    const _vnMonth = _now.getUTCMonth() + 1;
+    const _slotStart = slot.time.split(' – ')[0];
+    const _slotH = parseInt(_slotStart.split(':')[0]);
+    const _slotM = parseInt(_slotStart.split(':')[1]);
+    const _curDay = parseInt(state.currentDay);
+    const isPast = (_vnMonth > 7) || 
+                   (_vnMonth === 7 && _vnDay > _curDay) ||
+                   (_vnMonth === 7 && _vnDay === _curDay && (_vnH > _slotH || (_vnH === _slotH && ((_now.getUTCMinutes() + _now.getUTCSeconds()/60) > _slotM))));
     const isFull = remaining <= 0 || isPast;
     const isSelected = state.selectedSlotId === slot.id && state.selectedSlotDay === state.currentDay;
     const capLabel = isPast ? 'Đã qua' : (remaining <= 0 ? 'Đã đặt' : `Còn ${remaining} chỗ`);

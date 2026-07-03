@@ -611,7 +611,7 @@ const DAYS_VN = { '03':'Thứ Sáu', '04':'Thứ Bảy', '06':'Thứ Hai' };
 
 async function fetchCounts() {
   try {
-    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSW8FI97YWGQExCHNGZbOino88yTLX3_fTvOO-Cz8Caopb1Q_xcJ06eU2jZuApgjfwcpx0n2aTEdO6Z/pub?gid=0&single=true&output=csv&t=' + Date.now();
+    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSW8FI97YWGQExCHNGZbOino88yTLX3_fTvOO-Cz8Caopb1Q_xcJ06eU2jZuApgjfwcpx0n2aTEdO6Z/pub?gid=281481402&single=true&output=csv&t=' + Date.now();
     const r = await fetch(url);
     const text = await r.text();
     const lines = text.trim().split('\n').slice(1);

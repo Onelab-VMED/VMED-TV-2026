@@ -365,16 +365,16 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-img-wrap">
-    <img class="hero-img-full" src="tuvan-banner.png" alt="ONELAB Tư vấn trực tuyến">
+    <img class="hero-img-full" src="medical-banner.png" alt="ONELAB Tư vấn trực tuyến">
   </div>
   <div class="hero-text">
     <div class="hero-label">✦ Dịch vụ tư vấn sức khỏe chuyên sâu</div>
-    <div class="hero-title">Đăng ký Tư Vấn<br><span>Kết Quả Xét Nghiệm 2025</span></div>
-    <div class="hero-desc">Kết nối trực tiếp với Bác sĩ & chuyên viên ONELAB — tư vấn kết quả xét nghiệm 2025 (nếu có), các xét nghiệm phát sinh và chuẩn bị tốt nhất trước khám tổng quát 2026.</div>
+    <div class="hero-title">Đăng ký Tư Vấn<br><span>Kết Quả Xét Nghiệm 2026</span></div>
+    <div class="hero-desc">Kết nối trực tiếp với Bác sĩ & chuyên viên ONELAB — tư vấn kết quả xét nghiệm cần được theo dõi và đánh giá thêm.</div>
     <div class="hero-chips">
       <div class="hero-chip">🩺 Tư vấn BS trực tuyến</div>
-      <div class="hero-chip">📅 <strong>02–04 & 06/07/2026</strong></div>
-      <div class="hero-chip">⏰ 8:30 – 16:30</div>
+      <div class="hero-chip">📅 <strong>13–18/07/2026</strong></div>
+      <div class="hero-chip">⏰ 8:30 – 16:00</div>
       <div class="hero-chip">🎁 Ưu đãi xét nghiệm VMED</div>
     </div>
   </div>
@@ -399,7 +399,7 @@
         <div class="type-btn active" id="btn-type-bs" onclick="selectType('bs')">
           <div class="type-btn-icon">🩺</div>
           <div class="type-btn-label">Tư vấn Bác sĩ</div>
-          <div class="type-btn-desc">Giải đáp KQ xét nghiệm 2025 & chuẩn bị khám 2026</div>
+          <div class="type-btn-desc">Tư vấn cùng bác sĩ, giải đáp những chỉ số cần được theo dõi và đánh giá thêm</div>
         </div>
         <div class="type-btn" id="btn-type-goi" onclick="selectType('goi')">
           <div class="type-btn-icon">🎁</div>
@@ -485,19 +485,34 @@
 
       <div class="slot-section-title">Chọn ngày</div>
       <div class="day-tabs">
-        <div class="day-tab active" id="tab-03" onclick="switchDay('03')">
-          <div class="day-tab-label">Thứ Sáu</div>
-          <div class="day-tab-date">03</div>
-          <div class="day-tab-month">Tháng 07</div>
-        </div>
-        <div class="day-tab" id="tab-04" onclick="switchDay('04')">
-          <div class="day-tab-label">Thứ Bảy</div>
-          <div class="day-tab-date">04</div>
-          <div class="day-tab-month">Tháng 07</div>
-        </div>
-        <div class="day-tab" id="tab-06" onclick="switchDay('06')">
+        <div class="day-tab active" id="tab-13" onclick="switchDay('13')">
           <div class="day-tab-label">Thứ Hai</div>
-          <div class="day-tab-date">06</div>
+          <div class="day-tab-date">13</div>
+          <div class="day-tab-month">Tháng 07</div>
+        </div>
+        <div class="day-tab" id="tab-14" onclick="switchDay('14')">
+          <div class="day-tab-label">Thứ Ba</div>
+          <div class="day-tab-date">14</div>
+          <div class="day-tab-month">Tháng 07</div>
+        </div>
+        <div class="day-tab" id="tab-15" onclick="switchDay('15')">
+          <div class="day-tab-label">Thứ Tư</div>
+          <div class="day-tab-date">15</div>
+          <div class="day-tab-month">Tháng 07</div>
+        </div>
+        <div class="day-tab" id="tab-16" onclick="switchDay('16')">
+          <div class="day-tab-label">Thứ Năm</div>
+          <div class="day-tab-date">16</div>
+          <div class="day-tab-month">Tháng 07</div>
+        </div>
+        <div class="day-tab" id="tab-17" onclick="switchDay('17')">
+          <div class="day-tab-label">Thứ Sáu</div>
+          <div class="day-tab-date">17</div>
+          <div class="day-tab-month">Tháng 07</div>
+        </div>
+        <div class="day-tab" id="tab-18" onclick="switchDay('18')">
+          <div class="day-tab-label">Thứ Bảy</div>
+          <div class="day-tab-date">18</div>
           <div class="day-tab-month">Tháng 07</div>
         </div>
       </div>
@@ -564,16 +579,22 @@
 <script>
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx_1ASNhpML28tBeuPsNEpm-OqDIRny6f_xn_wnk6pWao0HGFykKaYDa2Wv-i0iPBbH/exec';
 
-// Slots: 8:30-12:00, 13:00-17:00, mỗi 30p
+// Slots: 08:30-11:30 (sáng), 13:30-16:00 (chiều), mỗi 30p, mỗi khung 2 slot đăng ký
 const SLOTS = [];
 function buildSlots() {
   const times = [];
-  for (let h = 8; h <= 16; h++) {
+  // Sáng: 08:30 -> 11:30
+  for (let h = 8; h <= 11; h++) {
     for (let m of [0, 30]) {
       if (h === 8 && m === 0) continue; // bắt đầu từ 8:30
-      if (h === 12 || h === 13) continue; // nghỉ trưa 12:00-13:00 (bỏ cả 13:00 vì slot 13:00-13:30 bắt đầu từ 13:00)
-      if (h === 13 && m === 0) continue;
-      if (h === 16 && m === 30) break;
+      if (h === 11 && m === 30) break;  // kết thúc lúc 11:30
+      times.push({ h, m });
+    }
+  }
+  // Chiều: 13:30 -> 16:00 (slot cuối 15:30–16:00)
+  for (let h = 13; h <= 15; h++) {
+    for (let m of [0, 30]) {
+      if (h === 13 && m === 0) continue; // bắt đầu từ 13:30
       times.push({ h, m });
     }
   }
@@ -587,7 +608,7 @@ function buildSlots() {
   });
 }
 
-const SLOT_CAP = 1; // mỗi slot 1 người
+const SLOT_CAP = 2; // mỗi khung giờ 30 phút có 2 slot được đăng ký
 
 const UU_DAI = [
   { id: 'sti', name: '🦠 Tầm soát STI & bệnh lây truyền', note: 'HIV, Syphilis, STI 13 tác nhân...', old: '1,508,000đ', new: '1,357,200đ', pct: '-10%' },
@@ -597,17 +618,19 @@ const UU_DAI = [
   { id: 'onco2', name: '🧬 OneScan Onco — Tầm soát ung thư cao cấp', note: 'Gói toàn diện cao cấp nhất', old: '17,890,000đ', new: '15,206,500đ', pct: '-15%' },
 ];
 
+const DAY_LIST = ['13','14','15','16','17','18'];
+
 let state = {
   type: 'bs',
-  currentDay: '03',
+  currentDay: '13',
   selectedSlotId: null,
   selectedSlotDay: null,
   selectedGoi: [],
-  slotCounts: { '03':{}, '04':{}, '06':{} },
+  slotCounts: { '13':{}, '14':{}, '15':{}, '16':{}, '17':{}, '18':{} },
   totalRegistered: 0,
 };
 
-const DAYS_VN = { '03':'Thứ Sáu', '04':'Thứ Bảy', '06':'Thứ Hai' };
+const DAYS_VN = { '13':'Thứ Hai', '14':'Thứ Ba', '15':'Thứ Tư', '16':'Thứ Năm', '17':'Thứ Sáu', '18':'Thứ Bảy' };
 
 async function fetchCounts() {
   try {
@@ -616,7 +639,7 @@ async function fetchCounts() {
     const text = await r.text();
     const lines = text.trim().split('\n').slice(1);
 
-    const dayCounts = { '03':{}, '04':{}, '06':{} };
+    const dayCounts = { '13':{}, '14':{}, '15':{}, '16':{}, '17':{}, '18':{} };
 
     lines.forEach(line => {
       if (!line.trim()) return;
@@ -642,7 +665,7 @@ async function fetchCounts() {
     // Map startTime to slot id
     SLOTS.forEach(slot => {
       const start = slot.time.substring(0, 5);
-      ['03','04','06'].forEach(day => {
+      DAY_LIST.forEach(day => {
         if (!state.slotCounts[day]) state.slotCounts[day] = {};
         state.slotCounts[day][slot.id] = dayCounts[day][start] || 0;
       });
@@ -698,7 +721,7 @@ function toggleGoi(id) {
 // SLOTS
 function switchDay(day) {
   state.currentDay = day;
-  ['03','04','06'].forEach(d => {
+  DAY_LIST.forEach(d => {
     document.getElementById('tab-'+d).classList.toggle('active', d === day);
   });
   renderSlots();

@@ -373,8 +373,8 @@
     <div class="hero-desc">Kết nối trực tiếp với Bác sĩ & chuyên viên ONELAB — tư vấn kết quả xét nghiệm cần được theo dõi và đánh giá thêm.</div>
     <div class="hero-chips">
       <div class="hero-chip">🩺 Tư vấn BS trực tuyến</div>
-      <div class="hero-chip">📅 <strong>13–18/07/2026</strong></div>
-      <div class="hero-chip">⏰ 8:30 – 16:00</div>
+      <div class="hero-chip">📅 <strong>10–20/08/2026</strong></div>
+      <div class="hero-chip">⏰ 8:30 – 15:30</div>
       <div class="hero-chip">🎁 Ưu đãi xét nghiệm VMED</div>
     </div>
   </div>
@@ -453,6 +453,21 @@
       <!-- Chỉ hiện khi chọn tư vấn BS -->
       <div id="bs-extra">
         <div class="form-group">
+          <label>Hình thức tư vấn <span class="req">*</span></label>
+          <div class="type-toggle" style="margin-bottom:0;">
+            <div class="type-btn active" id="btn-format-online" onclick="selectFormat('online')">
+              <div class="type-btn-icon">💻</div>
+              <div class="type-btn-label">Online</div>
+              <div class="type-btn-desc">Tư vấn qua điện thoại / video call</div>
+            </div>
+            <div class="type-btn" id="btn-format-offline" onclick="selectFormat('offline')">
+              <div class="type-btn-icon">🏥</div>
+              <div class="type-btn-label">Trực tiếp</div>
+              <div class="type-btn-desc">Gặp bác sĩ tại ONELAB — chỉ áp dụng khu vực TP.HCM</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
           <label>Chỉ số quan tâm / Câu hỏi muốn hỏi BS <span style="font-weight:400;color:var(--gray-400)">(nếu có)</span></label>
           <textarea id="f-question" placeholder="Ví dụ: Chỉ số mỡ máu tăng, đường huyết, men gan... hoặc xét nghiệm phát sinh bạn muốn tư vấn thêm"></textarea>
         </div>
@@ -485,35 +500,55 @@
 
       <div class="slot-section-title">Chọn ngày</div>
       <div class="day-tabs">
-        <div class="day-tab active" id="tab-13" onclick="switchDay('13')">
+        <div class="day-tab active" id="tab-10" onclick="switchDay('10')">
           <div class="day-tab-label">Thứ Hai</div>
+          <div class="day-tab-date">10</div>
+          <div class="day-tab-month">Tháng 08</div>
+        </div>
+        <div class="day-tab" id="tab-11" onclick="switchDay('11')">
+          <div class="day-tab-label">Thứ Ba</div>
+          <div class="day-tab-date">11</div>
+          <div class="day-tab-month">Tháng 08</div>
+        </div>
+        <div class="day-tab" id="tab-12" onclick="switchDay('12')">
+          <div class="day-tab-label">Thứ Tư</div>
+          <div class="day-tab-date">12</div>
+          <div class="day-tab-month">Tháng 08</div>
+        </div>
+        <div class="day-tab" id="tab-13" onclick="switchDay('13')">
+          <div class="day-tab-label">Thứ Năm</div>
           <div class="day-tab-date">13</div>
-          <div class="day-tab-month">Tháng 07</div>
+          <div class="day-tab-month">Tháng 08</div>
         </div>
         <div class="day-tab" id="tab-14" onclick="switchDay('14')">
-          <div class="day-tab-label">Thứ Ba</div>
+          <div class="day-tab-label">Thứ Sáu</div>
           <div class="day-tab-date">14</div>
-          <div class="day-tab-month">Tháng 07</div>
+          <div class="day-tab-month">Tháng 08</div>
         </div>
         <div class="day-tab" id="tab-15" onclick="switchDay('15')">
-          <div class="day-tab-label">Thứ Tư</div>
+          <div class="day-tab-label">Thứ Bảy</div>
           <div class="day-tab-date">15</div>
-          <div class="day-tab-month">Tháng 07</div>
-        </div>
-        <div class="day-tab" id="tab-16" onclick="switchDay('16')">
-          <div class="day-tab-label">Thứ Năm</div>
-          <div class="day-tab-date">16</div>
-          <div class="day-tab-month">Tháng 07</div>
+          <div class="day-tab-month">Tháng 08</div>
         </div>
         <div class="day-tab" id="tab-17" onclick="switchDay('17')">
-          <div class="day-tab-label">Thứ Sáu</div>
+          <div class="day-tab-label">Thứ Hai</div>
           <div class="day-tab-date">17</div>
-          <div class="day-tab-month">Tháng 07</div>
+          <div class="day-tab-month">Tháng 08</div>
         </div>
         <div class="day-tab" id="tab-18" onclick="switchDay('18')">
-          <div class="day-tab-label">Thứ Bảy</div>
+          <div class="day-tab-label">Thứ Ba</div>
           <div class="day-tab-date">18</div>
-          <div class="day-tab-month">Tháng 07</div>
+          <div class="day-tab-month">Tháng 08</div>
+        </div>
+        <div class="day-tab" id="tab-19" onclick="switchDay('19')">
+          <div class="day-tab-label">Thứ Tư</div>
+          <div class="day-tab-date">19</div>
+          <div class="day-tab-month">Tháng 08</div>
+        </div>
+        <div class="day-tab" id="tab-20" onclick="switchDay('20')">
+          <div class="day-tab-label">Thứ Năm</div>
+          <div class="day-tab-date">20</div>
+          <div class="day-tab-month">Tháng 08</div>
         </div>
       </div>
 
@@ -525,6 +560,7 @@
         <div class="summary-row"><span>Ngày</span><strong id="sum-day">—</strong></div>
         <div class="summary-row"><span>Khung giờ</span><strong id="sum-slot">—</strong></div>
         <div class="summary-row"><span>Loại tư vấn</span><strong id="sum-type">—</strong></div>
+        <div class="summary-row" id="sum-format-row"><span>Hình thức</span><strong id="sum-format">—</strong></div>
       </div>
     </div>
 
@@ -558,6 +594,7 @@
       <div class="success-detail"><span>SĐT</span><strong id="sc-phone">—</strong></div>
       <div class="success-detail"><span>Đơn vị</span><strong id="sc-company">—</strong></div>
       <div class="success-detail"><span>Loại tư vấn</span><strong id="sc-type">—</strong></div>
+      <div class="success-detail" id="sc-format-row"><span>Hình thức</span><strong id="sc-format">—</strong></div>
       <div class="success-detail"><span>Lịch dự kiến</span><strong id="sc-slot">—</strong></div>
     </div>
     <div class="success-note" style="margin-top:16px;">
@@ -579,7 +616,7 @@
 <script>
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx_1ASNhpML28tBeuPsNEpm-OqDIRny6f_xn_wnk6pWao0HGFykKaYDa2Wv-i0iPBbH/exec';
 
-// Slots: 08:30-11:30 (sáng), 13:30-16:00 (chiều), mỗi 30p, mỗi khung 2 slot đăng ký
+// Slots: 08:30-11:30 (sáng), 13:30-15:30 (chiều), mỗi 30p, mỗi khung 2 slot đăng ký
 const SLOTS = [];
 function buildSlots() {
   const times = [];
@@ -591,13 +628,14 @@ function buildSlots() {
       times.push({ h, m });
     }
   }
-  // Chiều: 13:30 -> 16:00 (slot cuối 15:30–16:00)
-  for (let h = 13; h <= 15; h++) {
+  // Chiều: 13:30 -> 15:30 (slot cuối 15:00–15:30, BS nghỉ lúc 15:30)
+  for (let h = 13; h <= 14; h++) {
     for (let m of [0, 30]) {
       if (h === 13 && m === 0) continue; // bắt đầu từ 13:30
       times.push({ h, m });
     }
   }
+  times.push({ h: 15, m: 0 }); // slot cuối 15:00-15:30
   times.forEach((t, i) => {
     const h1 = String(t.h).padStart(2,'0');
     const m1 = String(t.m).padStart(2,'0');
@@ -618,19 +656,22 @@ const UU_DAI = [
   { id: 'onco2', name: '🧬 OneScan Onco — Tầm soát ung thư cao cấp', note: 'Gói toàn diện cao cấp nhất', old: '17,890,000đ', new: '15,206,500đ', pct: '-15%' },
 ];
 
-const DAY_LIST = ['13','14','15','16','17','18'];
+const CONSULT_MONTH = '08';
+const CONSULT_YEAR = '2026';
+const DAY_LIST = ['10','11','12','13','14','15','17','18','19','20'];
 
 let state = {
   type: 'bs',
-  currentDay: '13',
+  format: 'online',
+  currentDay: '10',
   selectedSlotId: null,
   selectedSlotDay: null,
   selectedGoi: [],
-  slotCounts: { '13':{}, '14':{}, '15':{}, '16':{}, '17':{}, '18':{} },
+  slotCounts: { '10':{}, '11':{}, '12':{}, '13':{}, '14':{}, '15':{}, '17':{}, '18':{}, '19':{}, '20':{} },
   totalRegistered: 0,
 };
 
-const DAYS_VN = { '13':'Thứ Hai', '14':'Thứ Ba', '15':'Thứ Tư', '16':'Thứ Năm', '17':'Thứ Sáu', '18':'Thứ Bảy' };
+const DAYS_VN = { '10':'Thứ Hai', '11':'Thứ Ba', '12':'Thứ Tư', '13':'Thứ Năm', '14':'Thứ Sáu', '15':'Thứ Bảy', '17':'Thứ Hai', '18':'Thứ Ba', '19':'Thứ Tư', '20':'Thứ Năm' };
 
 async function fetchCounts() {
   try {
@@ -639,7 +680,7 @@ async function fetchCounts() {
     const text = await r.text();
     const lines = text.trim().split('\n').slice(1);
 
-    const dayCounts = { '13':{}, '14':{}, '15':{}, '16':{}, '17':{}, '18':{} };
+    const dayCounts = { '10':{}, '11':{}, '12':{}, '13':{}, '14':{}, '15':{}, '17':{}, '18':{}, '19':{}, '20':{} };
 
     lines.forEach(line => {
       if (!line.trim()) return;
@@ -652,12 +693,15 @@ async function fetchCounts() {
       }
       cols.push(cur.trim());
 
-      const rawDay = (cols[8] || '').trim();  // cot I - Ngay tu van
+      const rawDay = (cols[8] || '').trim();  // cot I - Ngay tu van (DD/MM/YYYY)
       const consultSlot = (cols[9] || '').trim();  // cot J - Khung gio
-      const dayNum = rawDay.split('/')[0].padStart(2, '0');
+      const dateParts = rawDay.split('/');
+      const dayNum = (dateParts[0] || '').trim().padStart(2, '0');
+      const monthNum = (dateParts[1] || '').trim().padStart(2, '0');
       const startTime = consultSlot.substring(0, 5).trim();
 
-      if (dayNum && startTime && dayCounts[dayNum] !== undefined) {
+      // Chỉ đếm các đăng ký đúng tháng của đợt tư vấn hiện tại (tránh cộng nhầm dữ liệu đợt cũ)
+      if (monthNum === CONSULT_MONTH && dayNum && startTime && dayCounts[dayNum] !== undefined) {
         dayCounts[dayNum][startTime] = (dayCounts[dayNum][startTime] || 0) + 1;
       }
     });
@@ -692,6 +736,14 @@ function selectType(type) {
   document.getElementById('section3-title').textContent = type === 'bs' ? 'Chọn lịch tư vấn Bác sĩ' : 'Chọn lịch gọi tư vấn gói';
   updateSummary();
   updateSubmitBtn();
+}
+
+// FORMAT (chỉ áp dụng cho Tư vấn Bác sĩ)
+function selectFormat(format) {
+  state.format = format;
+  document.getElementById('btn-format-online').classList.toggle('active', format === 'online');
+  document.getElementById('btn-format-offline').classList.toggle('active', format === 'offline');
+  updateSummary();
 }
 
 // GOI
@@ -741,9 +793,9 @@ function renderSlots() {
     const _slotH = parseInt(_slotStart.split(':')[0]);
     const _slotM = parseInt(_slotStart.split(':')[1]);
     const _curDay = parseInt(state.currentDay);
-    const isPast = (_vnMonth > 7) || 
-                   (_vnMonth === 7 && _vnDay > _curDay) ||
-                   (_vnMonth === 7 && _vnDay === _curDay && (_vnH > _slotH || (_vnH === _slotH && ((_now.getUTCMinutes() + _now.getUTCSeconds()/60) > _slotM))));
+    const isPast = (_vnMonth > 8) || 
+                   (_vnMonth === 8 && _vnDay > _curDay) ||
+                   (_vnMonth === 8 && _vnDay === _curDay && (_vnH > _slotH || (_vnH === _slotH && ((_now.getUTCMinutes() + _now.getUTCSeconds()/60) > _slotM))));
     const isFull = remaining <= 0 || isPast;
     const isSelected = state.selectedSlotId === slot.id && state.selectedSlotDay === state.currentDay;
     const capLabel = isPast ? 'Đã qua' : (remaining <= 0 ? 'Đã đặt' : `Còn ${remaining} chỗ`);
@@ -768,9 +820,11 @@ function updateSummary() {
   const el = document.getElementById('slot-summary');
   if (!state.selectedSlotId) { el.style.display = 'none'; return; }
   const slot = SLOTS.find(s => s.id === state.selectedSlotId);
-  document.getElementById('sum-day').textContent = `${DAYS_VN[state.selectedSlotDay]}, ${state.selectedSlotDay}/07/2026`;
+  document.getElementById('sum-day').textContent = `${DAYS_VN[state.selectedSlotDay]}, ${state.selectedSlotDay}/${CONSULT_MONTH}/${CONSULT_YEAR}`;
   document.getElementById('sum-slot').textContent = slot.time;
   document.getElementById('sum-type').textContent = state.type === 'bs' ? 'Tư vấn Bác sĩ' : 'Tư vấn Gói ưu đãi';
+  document.getElementById('sum-format-row').style.display = state.type === 'bs' ? '' : 'none';
+  document.getElementById('sum-format').textContent = state.format === 'offline' ? 'Trực tiếp (tại HCM)' : 'Online';
   el.style.display = 'block';
 }
 
@@ -810,9 +864,10 @@ async function handleSubmit() {
     cccd: document.getElementById('f-cccd').value.trim(),
     company: document.getElementById('f-company').value.trim(),
     type: state.type === 'bs' ? 'Tư vấn Bác sĩ' : 'Tư vấn Gói ưu đãi',
+    format: state.type === 'bs' ? (state.format === 'offline' ? 'Trực tiếp (HCM)' : 'Online') : '',
     question: document.getElementById('f-question') ? document.getElementById('f-question').value.trim() : '',
     goiSelected: state.selectedGoi.join(', '),
-    consultDay: state.selectedSlotDay + '/07/2026',
+    consultDay: `${state.selectedSlotDay}/${CONSULT_MONTH}/${CONSULT_YEAR}`,
     consultSlot: slot.time,
     timestamp: new Date().toISOString(),
   };
@@ -838,6 +893,8 @@ function showSuccess(p) {
   document.getElementById('sc-phone').textContent = p.phone;
   document.getElementById('sc-company').textContent = p.company;
   document.getElementById('sc-type').textContent = p.type;
+  document.getElementById('sc-format-row').style.display = p.format ? '' : 'none';
+  document.getElementById('sc-format').textContent = p.format || '—';
   document.getElementById('sc-slot').textContent = `${p.consultDay} — ${p.consultSlot}`;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }

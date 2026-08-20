@@ -188,9 +188,10 @@
   .field-error .error-msg { display: block; }
 
   /* SLOT */
-  .day-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .day-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 16px; }
+  @media (max-width: 520px) { .day-tabs { grid-template-columns: repeat(3, 1fr); } }
   .day-tab {
-    flex: 1; min-width: 80px; padding: 10px;
+    padding: 8px 4px;
     border: 2px solid var(--gray-200);
     border-radius: var(--radius-sm); background: var(--gray-50);
     cursor: pointer; text-align: center; transition: all 0.15s;
@@ -199,7 +200,7 @@
   .day-tab.active { border-color: var(--green-dark); background: var(--green-mint); }
   .day-tab-label { font-size: 10px; font-weight: 600; color: var(--gray-400); text-transform: uppercase; }
   .day-tab.active .day-tab-label { color: var(--green-dark); }
-  .day-tab-date { font-family: 'Be Vietnam Pro', sans-serif; font-size: 20px; font-weight: 700; color: var(--gray-800); line-height: 1.1; margin-top: 2px; }
+  .day-tab-date { font-family: 'Be Vietnam Pro', sans-serif; font-size: 18px; font-weight: 700; color: var(--gray-800); line-height: 1.1; margin-top: 2px; }
   .day-tab.active .day-tab-date { color: var(--green-dark); }
   .day-tab-month { font-size: 10px; color: var(--gray-400); }
 
@@ -581,25 +582,46 @@ const UU_DAI = [
   { id: 'onco2', name: '🧬 OneScan Onco — Tầm soát ung thư cao cấp', note: 'Gói toàn diện cao cấp nhất', old: '17,890,000đ', new: '15,206,500đ', pct: '-15%' },
 ];
 
-// Generate next 14 days Mon-Sat from today (VN time)
+// Ngày lễ cố định (MM-DD) và ngày lễ cụ thể (YYYY-MM-DD)
+const HOLIDAYS = [
+  '01-01', // Tết Dương lịch
+  '04-30', // Giải phóng miền Nam
+  '05-01', // Quốc tế Lao động
+  '09-01', // Quốc khánh (nghỉ bù)
+  '09-02', // Quốc khánh
+  // Thêm ngày lễ khác tại đây: 'MM-DD'
+];
+
+function isHoliday(d) {
+  const mmdd = String(d.getUTCMonth()+1).padStart(2,'0') + '-' + String(d.getUTCDate()).padStart(2,'0');
+  const yyyymmdd = d.getUTCFullYear() + '-' + mmdd;
+  return HOLIDAYS.includes(mmdd) || HOLIDAYS.includes(yyyymmdd);
+}
+
+// Generate toàn bộ ngày còn lại trong tháng hiện tại + tháng sau (trừ CN và lễ)
 function getAvailableDays() {
   const days = [];
   const DAYS_VN_MAP = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
   const now = new Date(new Date().getTime() + 7*60*60*1000);
   const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
-  for (let i = 0; i < 14; i++) {
-    const d = new Date(today.getTime() + i * 86400000);
-    const dow = d.getUTCDay(); // 0=Sun, 1=Mon...6=Sat
-    if (dow === 0) continue; // bỏ Chủ Nhật
-    days.push({
-      date: d,
-      day: String(d.getUTCDate()).padStart(2,'0'),
-      month: d.getUTCMonth() + 1,
-      year: d.getUTCFullYear(),
-      label: DAYS_VN_MAP[dow],
-      key: d.getUTCFullYear() + '-' + String(d.getUTCMonth()+1).padStart(2,'0') + '-' + String(d.getUTCDate()).padStart(2,'0')
-    });
-    if (days.length >= 7) break; // hiện tối đa 7 ngày
+  
+  // Lấy ngày cuối tháng sau
+  const endDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 2, 0));
+  
+  let d = new Date(today.getTime());
+  while (d <= endDate) {
+    const dow = d.getUTCDay();
+    if (dow !== 0 && !isHoliday(d)) { // bỏ Chủ Nhật và ngày lễ
+      days.push({
+        date: new Date(d.getTime()),
+        day: String(d.getUTCDate()).padStart(2,'0'),
+        month: d.getUTCMonth() + 1,
+        year: d.getUTCFullYear(),
+        label: DAYS_VN_MAP[dow],
+        key: d.getUTCFullYear() + '-' + String(d.getUTCMonth()+1).padStart(2,'0') + '-' + String(d.getUTCDate()).padStart(2,'0')
+      });
+    }
+    d = new Date(d.getTime() + 86400000);
   }
   return days;
 }

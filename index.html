@@ -81,7 +81,7 @@
     object-fit: cover; object-position: center top;
     display: block; border-radius: 12px 12px 0 0;
   }
-  .hero-text {
+  .hero-text { padding-top: 24px;
     background: linear-gradient(135deg, #0D3D20 0%, #1B6B3A 100%);
     border-radius: 0 0 12px 12px;
     padding: 18px 24px 24px;
@@ -197,9 +197,9 @@
   }
   .day-nav-btn:hover { background: var(--green-mint); }
   .day-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-  .day-tabs-scroll { display: flex; gap: 8px; overflow: hidden; flex: 1; }
-  .day-tabs { display: flex; gap: 8px; transition: transform 0.3s ease; }
-  .day-tab { flex-shrink: 0; width: 72px; padding: 8px 4px; }
+  .day-tabs-scroll { overflow: hidden; flex: 1; }
+  .day-tabs { display: flex; gap: 8px; transition: transform 0.3s ease; will-change: transform; }
+  .day-tab { flex-shrink: 0; width: 72px; padding: 8px 4px; cursor: pointer; }
   .day-tab {
     padding: 8px 4px;
     border: 2px solid var(--gray-200);
@@ -375,9 +375,7 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-img-wrap">
-    <img class="hero-img-full" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=80" alt="ONELAB Tư vấn trực tuyến">
-  </div>
+
   <div class="hero-text">
     <div class="hero-label">✦ Dịch vụ tư vấn sức khỏe chuyên sâu</div>
     <div class="hero-title">Đăng ký Tư Vấn<br><span>Kết Quả Xét Nghiệm 2025</span></div>
@@ -496,11 +494,11 @@
 
       <div class="slot-section-title">Chọn ngày</div>
       <div class="day-nav">
-        <button class="day-nav-btn" id="day-prev" onclick="scrollDays(-1)">‹</button>
+        <button class="day-nav-btn" id="day-prev" type="button" onclick="scrollDays(-1)">‹</button>
         <div class="day-tabs-scroll">
           <div class="day-tabs" id="day-tabs-container"></div>
         </div>
-        <button class="day-nav-btn" id="day-next" onclick="scrollDays(1)">›</button>
+        <button class="day-nav-btn" id="day-next" type="button" onclick="scrollDays(1)">›</button>
       </div>
 
       <div class="slot-section-title">Chọn khung giờ</div>
@@ -523,7 +521,7 @@
         <input type="checkbox" id="consent" onchange="updateSubmitBtn()">
         <label for="consent">Tôi đã đọc và đồng ý</label>
       </div>
-      <button type="button" class="btn-submit" id="btn-submit" onclick="handleSubmit()" disabled>
+      <button type="button" class="btn-submit" id="btn-submit" type="button" onclick="handleSubmit()" disabled>
         <span id="btn-text">Xác nhận đăng ký tư vấn</span>
         <span class="btn-loading" id="btn-loading"><span class="spinner"></span> Đang gửi...</span>
       </button>

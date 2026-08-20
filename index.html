@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng Ký Tư Vấn Trước Khám – ONELAB × VMED</title>
+<title>Đăng Ký Tư Vấn Kết Quả Khám Sức Khỏe – ONELAB × VMED</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -377,14 +377,13 @@
 <div class="hero">
 
   <div class="hero-text">
-    <div class="hero-label">✦ Dịch vụ tư vấn sức khỏe chuyên sâu</div>
+    <div class="hero-label">✦ Dịch vụ tư vấn kết quả sức khỏe</div>
     <div class="hero-title">Đăng ký Tư Vấn<br><span>Kết Quả Xét Nghiệm 2025</span></div>
     <div class="hero-desc">Kết nối trực tiếp với Bác sĩ & chuyên viên ONELAB — tư vấn kết quả xét nghiệm 2025 (nếu có), các xét nghiệm phát sinh và chuẩn bị tốt nhất trước khám tổng quát 2026.</div>
     <div class="hero-chips">
       <div class="hero-chip">🩺 Tư vấn BS trực tuyến</div>
       <div class="hero-chip">📅 <strong>02–04 & 06/07/2026</strong></div>
       <div class="hero-chip">⏰ 8:30 – 16:30</div>
-      <div class="hero-chip">🎁 Ưu đãi xét nghiệm VMED</div>
     </div>
   </div>
 </div>
@@ -411,9 +410,9 @@
           <div class="type-btn-desc">Giải đáp KQ xét nghiệm 2025 & chuẩn bị khám 2026</div>
         </div>
         <div class="type-btn" id="btn-type-goi" onclick="selectType('goi')">
-          <div class="type-btn-icon">🎁</div>
-          <div class="type-btn-label">Tư vấn Gói ưu đãi</div>
-          <div class="type-btn-desc">CSKH tư vấn các gói xét nghiệm ưu đãi dành riêng cho VMED</div>
+          <div class="type-btn-icon">🏥</div>
+          <div class="type-btn-label">Tư vấn Offline</div>
+          <div class="type-btn-desc">Gặp trực tiếp tại ONELAB — 509 Tô Hiến Thành, TP.HCM</div>
         </div>
       </div>
     </div>
@@ -463,24 +462,18 @@
       <div id="bs-extra">
         <div class="form-group">
           <label>Chỉ số quan tâm / Câu hỏi muốn hỏi BS <span style="font-weight:400;color:var(--gray-400)">(nếu có)</span></label>
-          <textarea id="f-question" placeholder="Ví dụ: Chỉ số mỡ máu tăng, đường huyết, men gan... hoặc xét nghiệm phát sinh bạn muốn tư vấn thêm"></textarea>
+          <textarea id="f-question" placeholder="Ví dụ: Chỉ số mỡ máu, huyết áp, đường huyết... hoặc câu hỏi về kết quả khám bạn muốn Bác sĩ giải đáp"></textarea>
         </div>
       </div>
 
-      <!-- Chỉ hiện khi chọn tư vấn gói -->
-      <div id="goi-extra" style="display:none;">
-        <div class="form-group">
-          <label>Gói xét nghiệm quan tâm <span style="font-weight:400;color:var(--gray-400)">(có thể chọn nhiều)</span></label>
-          <div class="uu-dai-grid" id="goi-grid"></div>
-        </div>
-      </div>
+      
     </div>
 
     <!-- SECTION 3: CHỌN LỊCH -->
     <div class="section-label">
       <div class="section-num">3</div>
       <div>
-        <div class="section-title" id="section3-title">Chọn lịch tư vấn Bác sĩ</div>
+        <div class="section-title" id="section3-title">Chọn lịch tư vấn Online</div>
         <div class="section-sub">Mỗi slot 30 phút — CSKH sẽ liên hệ đúng khung giờ đã chọn</div>
       </div>
     </div>
@@ -588,13 +581,6 @@ function buildSlots() {
 
 const SLOT_CAP = 1; // mỗi slot 1 người
 
-const UU_DAI = [
-  { id: 'sti', name: '🦠 Tầm soát STI & bệnh lây truyền', note: 'HIV, Syphilis, STI 13 tác nhân...', old: '1,508,000đ', new: '1,357,200đ', pct: '-10%' },
-  { id: 'kst', name: '🪱 Ký sinh trùng', note: 'Cysticercosis, Echinococcus...', old: '1,003,000đ', new: '902,700đ', pct: '-10%' },
-  { id: 'hpv', name: '🔬 Tầm soát nguy cơ ung thư cổ tử cung', note: 'HPV genotype Real-time PCR (40 type)', old: '750,000đ', new: '675,000đ', pct: '-10%' },
-  { id: 'onco1', name: '🎗️ OnePlus Onco — Tầm soát ung thư', note: 'Tầm soát đa ung thư chuyên sâu', old: '13,200,000đ', new: '11,220,000đ', pct: '-15%' },
-  { id: 'onco2', name: '🧬 OneScan Onco — Tầm soát ung thư cao cấp', note: 'Gói toàn diện cao cấp nhất', old: '17,890,000đ', new: '15,206,500đ', pct: '-15%' },
-];
 
 // Ngày lễ cố định (MM-DD) và ngày lễ cụ thể (YYYY-MM-DD)
 const HOLIDAYS = [
@@ -649,7 +635,6 @@ let state = {
   currentDay: AVAILABLE_DAYS.length > 0 ? AVAILABLE_DAYS[0].key : '',
   selectedSlotId: null,
   selectedSlotDay: null,
-  selectedGoi: [],
   slotCounts: {},
   totalRegistered: 0,
 };
@@ -734,7 +719,6 @@ async function fetchCounts() {
 
 async function init() {
   buildSlots();
-  renderGoiGrid();
   renderDayTabs();
   await fetchCounts();
   renderSlots();
@@ -747,34 +731,12 @@ function selectType(type) {
   document.getElementById('btn-type-goi').classList.toggle('active', type === 'goi');
   document.getElementById('bs-extra').style.display = type === 'bs' ? '' : 'none';
   document.getElementById('goi-extra').style.display = type === 'goi' ? '' : 'none';
-  document.getElementById('section3-title').textContent = type === 'bs' ? 'Chọn lịch tư vấn Bác sĩ' : 'Chọn lịch gọi tư vấn gói';
+  document.getElementById('section3-title').textContent = type === 'bs' ? 'Chọn lịch tư vấn Online' : 'Chọn lịch tư vấn Offline';
   updateSummary();
   updateSubmitBtn();
 }
 
 // GOI
-function renderGoiGrid() {
-  document.getElementById('goi-grid').innerHTML = UU_DAI.map(g => `
-    <div class="uu-dai-card${state.selectedGoi.includes(g.id)?' selected':''}" onclick="toggleGoi('${g.id}')">
-      <div class="uu-dai-card-header">
-        <div class="uu-dai-check"></div>
-        <div class="uu-dai-name">${g.name}</div>
-      </div>
-      <div class="uu-dai-note">${g.note}</div>
-      <div class="uu-dai-price">
-        <span class="uu-dai-old">${g.old}</span>
-        <span class="uu-dai-new">${g.new}</span>
-        <span class="uu-dai-badge">${g.pct}</span>
-      </div>
-    </div>`).join('');
-}
-function toggleGoi(id) {
-  const idx = state.selectedGoi.indexOf(id);
-  if (idx === -1) state.selectedGoi.push(id);
-  else state.selectedGoi.splice(idx, 1);
-  renderGoiGrid();
-  updateSubmitBtn();
-}
 
 // SLOTS
 function switchDay(day) {
@@ -837,7 +799,7 @@ function updateSummary() {
   const _sdDisplay = _sd.length===3 ? `${_sd[2]}/${_sd[1]}/${_sd[0]}` : state.selectedSlotDay;
   document.getElementById('sum-day').textContent = `${DAYS_VN[state.selectedSlotDay] || ''}, ${_sdDisplay}`;
   document.getElementById('sum-slot').textContent = slot.time;
-  document.getElementById('sum-type').textContent = state.type === 'bs' ? 'Tư vấn Bác sĩ' : 'Tư vấn Gói ưu đãi';
+  document.getElementById('sum-type').textContent = state.type === 'bs' ? 'Tư vấn Online' : 'Tư vấn Offline';
   el.style.display = 'block';
 }
 
@@ -876,9 +838,8 @@ async function handleSubmit() {
     dob: document.getElementById('f-dob').value,
     cccd: document.getElementById('f-cccd').value.trim(),
     company: document.getElementById('f-company').value.trim(),
-    type: state.type === 'bs' ? 'Tư vấn Bác sĩ' : 'Tư vấn Gói ưu đãi',
+    type: state.type === 'bs' ? 'Tư vấn Online' : 'Tư vấn Offline',
     question: document.getElementById('f-question') ? document.getElementById('f-question').value.trim() : '',
-    goiSelected: state.selectedGoi.join(', '),
     consultDay: (function(){
       const p = (state.selectedSlotDay||'').split('-');
       return p.length===3 ? p[2]+'/'+p[1]+'/'+p[0] : state.selectedSlotDay;

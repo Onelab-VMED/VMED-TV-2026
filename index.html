@@ -188,8 +188,18 @@
   .field-error .error-msg { display: block; }
 
   /* SLOT */
-  .day-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 16px; }
-  @media (max-width: 520px) { .day-tabs { grid-template-columns: repeat(3, 1fr); } }
+  .day-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  .day-nav-btn {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1.5px solid var(--green-light); background: white;
+    cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
+    color: var(--green-dark); flex-shrink: 0; transition: all 0.15s;
+  }
+  .day-nav-btn:hover { background: var(--green-mint); }
+  .day-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .day-tabs-scroll { display: flex; gap: 8px; overflow: hidden; flex: 1; }
+  .day-tabs { display: flex; gap: 8px; transition: transform 0.3s ease; }
+  .day-tab { flex-shrink: 0; width: 72px; padding: 8px 4px; }
   .day-tab {
     padding: 8px 4px;
     border: 2px solid var(--gray-200);
@@ -366,7 +376,7 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-img-wrap">
-    <img class="hero-img-full" src="tuvan-banner.png" alt="ONELAB Tư vấn trực tuyến">
+    <img class="hero-img-full" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=80" alt="ONELAB Tư vấn trực tuyến">
   </div>
   <div class="hero-text">
     <div class="hero-label">✦ Dịch vụ tư vấn sức khỏe chuyên sâu</div>
@@ -485,7 +495,13 @@
       </div>
 
       <div class="slot-section-title">Chọn ngày</div>
-      <div class="day-tabs" id="day-tabs-container"></div>
+      <div class="day-nav">
+        <button class="day-nav-btn" id="day-prev" onclick="scrollDays(-1)">‹</button>
+        <div class="day-tabs-scroll">
+          <div class="day-tabs" id="day-tabs-container"></div>
+        </div>
+        <button class="day-nav-btn" id="day-next" onclick="scrollDays(1)">›</button>
+      </div>
 
       <div class="slot-section-title">Chọn khung giờ</div>
       <div class="slots-grid" id="slots-grid"></div>
@@ -641,6 +657,9 @@ let state = {
 };
 AVAILABLE_DAYS.forEach(d => { state.slotCounts[d.key] = {}; });
 
+let dayScrollIndex = 0;
+const DAYS_PER_VIEW = 4;
+
 function renderDayTabs() {
   const container = document.getElementById('day-tabs-container');
   if (!container) return;
@@ -650,6 +669,24 @@ function renderDayTabs() {
       <div class="day-tab-date">${d.day}</div>
       <div class="day-tab-month">Tháng ${d.month}</div>
     </div>`).join('');
+  updateDayNav();
+}
+
+function scrollDays(dir) {
+  dayScrollIndex = Math.max(0, Math.min(dayScrollIndex + dir, AVAILABLE_DAYS.length - DAYS_PER_VIEW));
+  const container = document.getElementById('day-tabs-container');
+  if (container) {
+    const tabW = 80; // 72px + 8px gap
+    container.style.transform = `translateX(-${dayScrollIndex * tabW}px)`;
+  }
+  updateDayNav();
+}
+
+function updateDayNav() {
+  const prev = document.getElementById('day-prev');
+  const next = document.getElementById('day-next');
+  if (prev) prev.disabled = dayScrollIndex === 0;
+  if (next) next.disabled = dayScrollIndex >= AVAILABLE_DAYS.length - DAYS_PER_VIEW;
 }
 
 async function fetchCounts() {
